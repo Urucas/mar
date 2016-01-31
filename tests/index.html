@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en" ng-app="MarApp">
+<head>
+  <meta charset="utf-8">
+
+  <title>Mar test</title>
+  <meta name="description" content="Mar, because Sea was taken">
+  <meta name="author" content="@urucas">
+
+</head>
+
+<body ng-controller="MarController">
+
+  <div ng-show="mustShow">
+    <h1 id="show">Show must go on!</h1>
+  </div>
+  <div ng-show="!mustShow">
+    <h1 id="sopa">Sopa</h1>
+  </div>
+
+  <script src="./tests/angular/angular.min.js"></script>
+  <script src="./tests/controller.js"></script>
+
+</body>
+</html>
