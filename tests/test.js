@@ -1,5 +1,5 @@
 import webdriver from 'selenium-webdriver'
-import Mar from "../lib/index.js"
+import mar from "../lib/index.js"
 import chai from 'chai'
 import express from 'express'
 import path from 'path'
@@ -20,35 +20,12 @@ describe("Test ", () => {
   let driver = new webdriver.Builder()
     .withCapabilities(webdriver.Capabilities.chrome())
     .build()
-  let mar = new Mar(driver, controllerName)
-
+  mar(webdriver, driver, controllerName)
 
   after( () => {
     return driver.quit()
   })
 
-  it("Test getScopeSelector", (done) => {
-    let mar = new Mar(driver, controllerName)
-    let selector = mar.getScopeSelector()
-    selector.should.not.equal(null)
-    selector.should.not.equal(undefined)
-    expect(selector).to.be.a("string")
-    expect(selector).to.match(/\[ng\-controller\=\"[\w\d\-]+\"\]/)
-    done()
-  })
-
-  it("Test getExecpScript", (done) => {
-    let mar = new Mar(driver, controllerName)
-    let selector = mar.getScopeSelector()
-    let obj = {q:"query"}
-    let script = mar.getScript(selector, obj)
-    script.should.not.equal(null)
-    script.should.not.equal(undefined)
-    expect(script).to.be.a("string")
-    done()
-    // expect(script).to.match(new RegExp(`^var scope \= angular\.element(document\.querySelectorAll(\'${selector}'))\.scope\;.+`))
-  })
-  
   it("Test using Mar", (done) => {
     driver
     .get("http://localhost:5000")
@@ -66,7 +43,8 @@ describe("Test ", () => {
     })
 
     // make mar to extend webdriver prototype
-    mar.apply({mustShow:true})
+    driver
+    .$apply({mustShow:true})
     .then( () => {
       driver
         .findElement(By.id("sopa"))
