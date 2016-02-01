@@ -36,6 +36,7 @@ Here's an example on how to test this angular app changes with selenium using ma
 import webdriver from 'selenium-webdriver'
 import chai from 'chai'
 import mar from 'marjs'
+// aungular controller name to test scope changes
 const controllerName = "MarController"
 let should = chai.should()
 describe("Testing angular scope changes with mar", () => {
@@ -44,6 +45,7 @@ describe("Testing angular scope changes with mar", () => {
   let driver = new webdriver.Builder()
     .withCapabilities(webdriver.Capabilities.chrome())
     .build()
+    // call to mar
   mar(webdriver, driver, controllerName)
 
   after( () => {
