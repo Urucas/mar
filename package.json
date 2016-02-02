@@ -6,9 +6,7 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha tests/test.js --compilers js:babel-core/register -t 15s",
     "build": "./node_modules/babel-cli/bin/babel.js lib -d dist",
-    "prepublish": "npm run build",
-    "prestart" : "npm run build",
-    "start" : "node ./dist/server.js"
+    "prepublish": "npm run build"
   },
   "author": "Urucas <hello@urucas.com>",
   "license": "MIT",
@@ -17,6 +15,14 @@
     "babel-core": "^6.4.5",
     "babel-preset-es2015": "^6.3.13"
   },
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Urucas/mar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Urucas/mar/issues"
+  },
+  "homepage": "https://github.com/Urucas/mar#readme",
   "devDependencies": {
     "angular": "^1.4.9",
     "chai": "^3.5.0",

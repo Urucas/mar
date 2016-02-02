@@ -18,6 +18,15 @@
     <h1 id="sopa">Sopa</h1>
   </div>
 
+  <div class="user">
+    <p id="user-id">{{user.id}}</p>
+    <p id="user-name">{{user.name}}</p>
+    <p id="user-email">{{user.email}}</p>
+  </div>
+
+  <div ng-repeat="(index, dog) in user.dogs">
+    <p class="dog-{{index}}">{{dog}}</p>
+  </div>
   <script src="./tests/angular/angular.min.js"></script>
   <script src="./tests/controller.js"></script>
 

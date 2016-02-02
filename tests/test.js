@@ -12,7 +12,7 @@ app.get("/", (req, res) => {
 app.listen(5000)
 
 let should = chai.should(), expect = chai.expect
-let controllerName = "MarController"
+const controllerName = "MarController"
 
 describe("Test ", () => {
   
@@ -57,10 +57,49 @@ describe("Test ", () => {
         .isDisplayed()
         .then( (is) => {
         is.should.equal(true)
-        done()
       })
     })
-    
+    let user = {id:1, name:"vruno", email:"some@email.com", dogs: ["kurt", "filo", "yoko", "isaac"]}
+    driver.$apply({user:user})
+    .then( () => {
+      driver
+      .findElement(By.id("user-id"))
+      .then( (el) => {
+        el.getText()
+        .then( (val) => {
+          val.should.equal(user.id.toString())
+        })
+      })
+      driver
+      .findElement(By.id("user-name"))
+      .then( (el) => {
+        el.getText()
+        .then( (val) => {
+          val.should.equal(user.name)
+        })
+      })
+      driver
+      .findElement(By.id("user-email"))
+      .then( (el) => {
+        el.getText()
+        .then( (val) => {
+          val.should.equal(user.email)
+        })
+      })
+      let len = user.dogs.length, last = len-1
+      for(let i=0; i<len;i++) {
+        let dog = user.dogs[i]
+        driver
+        .findElement(By.className(`dog-${i}`))
+        .then( (el) => {
+          el.getText()
+          .then( (val) => {
+            val.should.equal(dog)
+            if(i==last) done()
+          })
+        })
+      }
+    })
   })
 
 
