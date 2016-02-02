@@ -20,13 +20,20 @@ describe("Test ", () => {
   let driver = new webdriver.Builder()
     .withCapabilities(webdriver.Capabilities.chrome())
     .build()
-  mar(webdriver, driver, controllerName)
-
+  
   after( () => {
     return driver.quit()
   })
 
+  it("Test $apply method is added to the driver", (done) => {
+    expect(driver.$apply).to.equal(undefined)
+    mar(webdriver, driver, controllerName)
+    driver.$apply.should.not.equal(undefined)
+    done()
+  })
+
   it("Test using Mar", (done) => {
+    mar(webdriver, driver, controllerName)
     driver
     .get("http://localhost:5000")
     driver
@@ -41,7 +48,6 @@ describe("Test ", () => {
     .then( (is) => {
       is.should.equal(false)
     })
-
     // make mar to extend webdriver prototype
     driver
     .$apply({mustShow:true})
@@ -101,6 +107,4 @@ describe("Test ", () => {
       }
     })
   })
-
-
 })
